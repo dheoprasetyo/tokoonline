@@ -226,14 +226,14 @@
         <li><a href="{{url('/category')}}"><i class="fa fa-dashboard"></i> <span>Category</span></a></li>
         <li class="treeview">
           <a href="#">
-            <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+            <i class="fa fa-dashboard"></i> <span>Products</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href={{ asset("adminlte/index.html")}}><i class="fa fa-circle-o"></i> Dashboard v1</a></li>
-            <li><a href={{ asset("adminlte/index2.html")}}><i class="fa fa-circle-o"></i> Dashboard v2</a></li>
+            <li><a href={{url('/product')}}><i class="fa fa-circle-o"></i> List Products</a></li>
+            <li><a href={{url('/product/create')}}><i class="fa fa-circle-o"></i>Add Products</a></li>
           </ul>
         </li>
         <li class="treeview">

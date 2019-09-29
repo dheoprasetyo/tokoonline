@@ -22,6 +22,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::name('admin.')->group(function(){
     Route::get('dashboard', 'HomeController@index')->name('dashboard');
     Route::resource('category', 'CategoryController');
+    Route::resource('product', 'ProductController');
     // Route::get('category', 'CategoryController@index')->name('category');
     // Route::post('/category/store', 'CategoryController@store')->name('category.store');
 

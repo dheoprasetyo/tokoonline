@@ -2,13 +2,13 @@
 @section('css')
 <!-- DataTables -->
 {{-- <link rel="stylesheet" href="{{ asset('adminlte/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css') }}"> --}}
-{{-- <style type="text/css">
+<style type="text/css">
 .table_list {
 list-style: none;
 padding: 3px;
 margin-left: -30px;
 }
-</style> --}}
+</style>
 @endsection
 @section('content')
 <div class="row">
@@ -24,9 +24,10 @@ margin-left: -30px;
               <th>No</th>
               <th width="400px">Photo</th>
               <th>Name</th>
-              <th>Description</th>
+              {{-- <th>Description</th> --}}
               <th>Stock</th>
               <th>price</th>
+              <th>User</th>
               <th>Action</th>
             </tr>
             </thead>
@@ -39,10 +40,19 @@ margin-left: -30px;
                 <td>{{ $no++ }}</td>
                 <td ><img src="{{$row->photo}}" width="40px" alt="User Image"></td>
                 <td>{{$row->name}}</td>
-                <td>{{$row->description}}</td>
+                {{-- <td>{{$row->description}}</td> --}}
                 <td>{{$row->stock}}</td>
                 <td>Rp {{number_format($row->price,0,".",".")}}</td>
-                <td></td>
+                <td>{{$row->user->name}}</td>
+                <td>
+                    <form action="{{ route('admin.product.destroy', $row->id) }}" method="POST">
+                    <a href="{{url('product/'.$row->id.'/edit') }}" class="btn btn-primary  btn-xs">Edit</a>
+                    
+                      {{ csrf_field() }}
+                      {{ method_field("DELETE")}}
+                      <button type="submit" class="btn btn-danger btn-xs">Delete</button>
+                    </form>
+                </td>
                 </tr>
               @endforeach
             </tbody>

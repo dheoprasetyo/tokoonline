@@ -1,6 +1,5 @@
 @extends('admin.layout.master')
 @section('css')
-@section('css')
 <!-- DataTables -->
 {{-- <link rel="stylesheet" href="{{ asset('adminlte/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css') }}"> --}}
 <style type="text/css">
@@ -31,7 +30,7 @@ margin-left: -30px;
                 </div>
                 <div class="form-group">
                   <label for="exampleInputEmail1">Description</label>
-                 <textarea   name="description" class="form-control"></textarea>
+                  <textarea id="description" name="description" class="form-control">{!! old('content', 'test editor description') !!}</textarea>
                 
                 </div>
                  <div class="form-group">
@@ -86,4 +85,41 @@ margin-left: -30px;
       })
     })
   </script>
-@endsection
+ <script src="//cdn.ckeditor.com/4.6.2/standard/ckeditor.js"></script>
+ <script>
+  var route_prefix = "{{ url(config('lfm.url_prefix', config('lfm.prefix'))) }}";
+ </script>
+
+ <!-- CKEditor init -->
+ <script src="//cdnjs.cloudflare.com/ajax/libs/ckeditor/4.5.11/adapters/jquery.js"></script>
+ <script>
+   $('textarea[name=description]').ckeditor({
+     height: 300,
+     filebrowserImageBrowseUrl: route_prefix + '?type=Photos',
+     filebrowserImageUploadUrl: route_prefix + '/upload?type=Photos&_token={{csrf_token()}}',
+     filebrowserBrowseUrl: route_prefix + '?type=Files',
+     filebrowserUploadUrl: route_prefix + '/upload?type=Files&_token={{csrf_token()}}'
+   });
+ </script>
+
+ <script>
+   {!! \File::get(base_path('vendor/unisharp/laravel-filemanager/public/js/lfm.js')) !!}
+ </script>
+ <script>
+   $('#lfm').filemanager('image', {prefix: route_prefix});
+   $('#lfm2').filemanager('file', {prefix: route_prefix});
+ </script>
+
+ <script>
+   $(document).ready(function(){
+
+     // Define function to open filemanager window
+     var lfm = function(options, cb) {
+         var route_prefix = (options && options.prefix) ? options.prefix : '/laravel-filemanager';
+         window.open(route_prefix + '?type=' + options.type || 'file', 'FileManager', 'width=900,height=600');
+         window.SetUrl = cb;
+     };
+
+   });
+ </script>
+ @endsection

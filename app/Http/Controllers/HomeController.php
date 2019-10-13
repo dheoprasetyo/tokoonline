@@ -25,4 +25,9 @@ class HomeController extends Controller
     {
         return view('admin.dashboard');
     }
+
+    public function media()
+    {
+        return view('admin.media');
+    }
 }

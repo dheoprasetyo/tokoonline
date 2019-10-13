@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('address');
             $table->string('phone');
             $table->enum('gender',['L','P']);
+            $table->enum('status',['0','1'])->default('0');
             $table->date('birthday');
             $table->enum('role',['admin','supplier','member']);
             $table->rememberToken();

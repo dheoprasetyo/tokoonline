@@ -236,6 +236,7 @@
             <li><a href={{url('/product/create')}}><i class="fa fa-circle-o"></i>Add Products</a></li>
           </ul>
         </li>
+        <li><a href="{{url('/media')}}"><i class="fa fa-dashboard"></i> <span>Media</span></a></li>
         <li class="treeview">
           <a href="#">
             <i class="fa fa-files-o"></i>

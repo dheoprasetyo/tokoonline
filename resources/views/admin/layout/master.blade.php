@@ -239,6 +239,18 @@
         <li><a href="{{url('/media')}}"><i class="fa fa-dashboard"></i> <span>Media</span></a></li>
         <li class="treeview">
           <a href="#">
+            <i class="fa fa-dashboard"></i> <span>Transaction</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href={{url('/transaction')}}><i class="fa fa-circle-o"></i> List Transaction</a></li>
+            <li><a href={{url('/product/create')}}><i class="fa fa-circle-o"></i>Add Products</a></li>
+          </ul>
+        </li>
+        <li class="treeview">
+          <a href="#">
             <i class="fa fa-files-o"></i>
             <span>Layout Options</span>
             <span class="pull-right-container">

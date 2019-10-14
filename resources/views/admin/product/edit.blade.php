@@ -55,6 +55,13 @@
                       value="{{ $product->price }}">
                 </div>
                 <div class="form-group">
+                  <label for="exampleInputEmail1">Weight</label>
+                  <input type="number" class="form-control"  
+                      placeholder="Enter your Weight" 
+                      name="weight"
+                      value="{{ $product->weight }}">
+                </div>
+                <div class="form-group">
                   <label for="exampleInputPassword1">Caegory</label>
                   <select class="form-control" name="category_id">
                      @foreach($categorys as $category)

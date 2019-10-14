@@ -41,10 +41,10 @@ margin-left: -30px;
                   <label for="exampleInputEmail1">Price</label>
                   <input type="number" class="form-control"  placeholder="Enter your Price" name="price">
                 </div>
-                 {{-- <div class="form-group">
+                 <div class="form-group">
                   <label for="exampleInputEmail1">Weight</label>
                   <input type="number" class="form-control"  placeholder="Enter your Weight" name="weight">
-                </div> --}}
+                </div>
                 <div class="form-group">
                   <label for="exampleInputPassword1">Caegory</label>
                   <select class="form-control" name="category_id">

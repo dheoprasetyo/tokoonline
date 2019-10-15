@@ -72,7 +72,7 @@ class RegisterController extends Controller
             'gender'    => $data['gender'],
             'birthday'  => $data['birthday'],
             'role'      => $data['role'],
-            // 'status'    => "0",
+            'status'    => "0",
             // 'password' => bcrypt($data['password']),
             'password' => Hash::make($data['password']),
         ]);

@@ -128,7 +128,7 @@ margin-left: -30px;
         <div class="row no-print">
           <div class="col-xs-12">
             <a class="btn btn-primary pull-right"  style="margin-right: 5px;"
-                href="{{ url('admin/transaction/'.$transaction->code.'/detail/data/cetak') }}">
+                href="{{ route('admin.pdf', $transaction->code) }}">
                 <i class="fa fa-download"></i> Generate PDF
                 </a>
           </div>

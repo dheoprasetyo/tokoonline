@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Alert;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -23,6 +24,27 @@ class UserController extends Controller
     	}
     	User::where('id',$id)->update(['status' => $change]);
     	Alert::success('', 'Status  berhasil di perbarui');
+        return redirect('/user');
+	}
+	
+	public function create(){
+    	return view('admin.user.add');
+    }
+    public function store(Request $data){
+    		$mydata = ([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'username'  => $data['username'],
+            'address'   => $data['address'],
+            'phone'     => $data['phone'],
+            'gender'    => $data['gender'],
+            'birthday'  => $data['birthday'],
+            'role'      => $data['role'],
+            'status'    => "0",
+            'password' => Hash::make($data['password']),
+        ]);
+    	User::create($mydata);
+    	Alert::success('', 'User  berhasil di simpan');
         return redirect('/user');
     }
 }

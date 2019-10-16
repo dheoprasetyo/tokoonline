@@ -30,6 +30,8 @@ Route::name('admin.')->group(function(){
     Route::get('transaction/{code}/detail/data/cetak','TransactionController@cetakpdf')->name('pdf');
     Route::get('user','UserController@index')->name('user');
     Route::get('user/status/{id}','UserController@changestatus');
+    Route::get('user/add','UserController@create')->name('user.create');
+	Route::post('user/add','UserController@store')->name('user.store');
     // Route::get('category', 'CategoryController@index')->name('category');
     // Route::post('/category/store', 'CategoryController@store')->name('category.store');
 

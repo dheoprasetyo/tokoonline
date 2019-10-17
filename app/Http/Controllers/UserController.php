@@ -47,4 +47,33 @@ class UserController extends Controller
     	Alert::success('', 'User  berhasil di simpan');
         return redirect('/user');
     }
+
+    public function edit($id){
+    	$user = User::find($id);
+    	return view('admin.user.edit',compact('user'));
+    }
+    public function update(Request $data){
+    	$mydata = ([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'username'  => $data['username'],
+            'address'   => $data['address'],
+            'phone'     => $data['phone'],
+            'gender'    => $data['gender'],
+            'birthday'  => $data['birthday'],
+            'role'      => $data['role'],
+            'status'    => "0",
+            'password' => Hash::make($data['password']),
+        ]);
+        User::where('id',$data->id)->update($mydata);
+    	Alert::success('', 'Status  berhasil di perbarui');
+        return redirect('/user');
+    }
+
+    public function delete($id){
+        $user= User::find($id);
+        $user->delete();
+        Alert::success('', 'User  berhasil di delete');
+        return redirect('/user');
+    }
 }

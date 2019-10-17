@@ -31,7 +31,7 @@ margin-left: -30px;
           <th>Gender</th>
           <th>Status</th>
           <th>Role</th>
-          {{-- <th>Menu</th> --}}
+          <th>Menu</th>
         </tr>
         </thead>
         <tbody>
@@ -46,7 +46,13 @@ margin-left: -30px;
           <td>{{ $row->username }}</td>
           <td>{{ $row->email }}</td>
            <td>{{ $row->address }}</td>
-          <td> {{ $row->gender }}</td>
+          <td> 
+            @if($row->gender == "L")
+                Laki laki
+            @else
+              Perempuan
+            @endif
+          </td>
           <td> 
             @if($row->status == 0)
              <a href="{{ url('user/status/'.$row->id) }}" class="btn btn-sm btn-danger"> Non Aktif </a>
@@ -55,10 +61,10 @@ margin-left: -30px;
             @endif
           </td>
           <td>{{ $row->role }}</td>
-          {{-- <td>
+          <td>
             <a href="{{ url('user/edit/'.$row->id) }}" class="btn btn-sm btn-primary">Edit</a>
             <a href="{{ url('user/delete/'.$row->id) }}" class="btn btn-sm btn-danger">Delete</a>
-          </td> --}}
+          </td>
         </tr>
 
         @endforeach

@@ -11,15 +11,14 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'BerandaController@index');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+
 
 Route::name('admin.')->group(function(){
+    Route::get('/home', 'HomeController@index')->name('home');
     Route::get('media', 'HomeController@media')->name('media');
     Route::get('dashboard', 'HomeController@index')->name('dashboard');
     Route::resource('category', 'CategoryController');
@@ -31,7 +30,10 @@ Route::name('admin.')->group(function(){
     Route::get('user','UserController@index')->name('user');
     Route::get('user/status/{id}','UserController@changestatus');
     Route::get('user/add','UserController@create')->name('user.create');
-	Route::post('user/add','UserController@store')->name('user.store');
+    Route::post('user/add','UserController@store')->name('user.store');
+    Route::get('user/edit/{id}','UserController@edit');
+    Route::post('user/update','UserController@update');
+    Route::get('user/delete/{id}','UserController@delete');
     // Route::get('category', 'CategoryController@index')->name('category');
     // Route::post('/category/store', 'CategoryController@store')->name('category.store');
 

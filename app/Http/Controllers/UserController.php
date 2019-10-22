@@ -24,7 +24,7 @@ class UserController extends Controller
     	}
     	User::where('id',$id)->update(['status' => $change]);
     	Alert::success('', 'Status  berhasil di perbarui');
-        return redirect('/user');
+        return redirect('admin/user');
 	}
 	
 	public function create(){
@@ -45,7 +45,7 @@ class UserController extends Controller
         ]);
     	User::create($mydata);
     	Alert::success('', 'User  berhasil di simpan');
-        return redirect('/user');
+        return redirect('/admin/user');
     }
 
     public function edit($id){
@@ -67,7 +67,7 @@ class UserController extends Controller
         ]);
         User::where('id',$data->id)->update($mydata);
     	Alert::success('', 'Status  berhasil di perbarui');
-        return redirect('/user');
+        return redirect('admin/user');
     }
 
     public function delete($id){

@@ -55,15 +55,15 @@ margin-left: -30px;
           </td>
           <td> 
             @if($row->status == 0)
-             <a href="{{ url('user/status/'.$row->id) }}" class="btn btn-sm btn-danger"> Non Aktif </a>
+             <a href="{{ url('admin/user/status/'.$row->id) }}" class="btn btn-sm btn-danger"> Non Aktif </a>
             @else
-             <a href="{{ url('user/status/'.$row->id) }}" class="btn btn-sm btn-primary">  Aktif </a>
+             <a href="{{ url('admin/user/status/'.$row->id) }}" class="btn btn-sm btn-primary">  Aktif </a>
             @endif
           </td>
           <td>{{ $row->role }}</td>
           <td>
-            <a href="{{ url('user/edit/'.$row->id) }}" class="btn btn-sm btn-primary">Edit</a>
-            <a href="{{ url('user/delete/'.$row->id) }}" class="btn btn-sm btn-danger">Delete</a>
+            <a href="{{ url('admin/user/edit/'.$row->id) }}" class="btn btn-sm btn-primary">Edit</a>
+            <a href="{{ url('admin/user/delete/'.$row->id) }}" class="btn btn-sm btn-danger">Delete</a>
           </td>
         </tr>
 

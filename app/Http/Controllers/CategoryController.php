@@ -24,7 +24,7 @@ class CategoryController extends Controller
         $category->user_id = Auth::user()->id;
         $category->save();
         Alert::success('', 'Category Berhasil di Tambahkan');
-        return redirect()->back();
+        return redirect(route('category.index'));
     }
 
     public function edit(Request $request,$id){
@@ -40,14 +40,14 @@ class CategoryController extends Controller
         $category->parent_id = $request->parent_id;
         $category->icon = $request->icon;
         $category->save();
-        // Alert::success('', 'Category Berhasil di Perbarui');
-        return redirect('category');
+        Alert::success('', 'Category Berhasil di Perbarui');
+        return redirect(route('category.index'));
     }
 
     public function destroy($id){
         $category = Category::find($id);
         $category->delete();
         Alert::success('', 'Category Berhasil di Delete');
-        return redirect('category');
+        return redirect(route('category.index'));
     }
 }

@@ -18,7 +18,7 @@
             <div class="box-header with-border">
               <h3 class="box-title">Update Category</h3>
             </div>
-            <form role="form" action="{{ route('admin.category.update',$category->id) }}" method="POST">
+            <form role="form" action="{{ route('category.update',$category->id) }}" method="POST">
             {{ csrf_field() }}
             {{ method_field('PUT')}}
               <div class="box-body">

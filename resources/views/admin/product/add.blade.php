@@ -17,7 +17,7 @@ margin-left: -30px;
             <div class="box-header with-border">
               <h3 class="box-title">Add Product</h3>
             </div>
-            <form role="form" action="{{ url('/product') }}" method="POST" enctype="multipart/form-data">
+            <form role="form" action="{{ url('admin/product') }}" method="POST" enctype="multipart/form-data">
             {{ csrf_field() }}
               <div class="box-body">
                 <div class="form-group">

@@ -32,11 +32,13 @@
     <link rel="apple-touch-icon" sizes="120x120" href="img/apple-touch-icon-120x120.png">
     <link rel="apple-touch-icon" sizes="144x144" href="img/apple-touch-icon-144x144.png">
     <link rel="apple-touch-icon" sizes="152x152" href="img/apple-touch-icon-152x152.png">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
     <!-- Tweaks for older IEs--><!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
   </head>
   <body>
+      @include('sweet::alert')
     <div id="all">
       <!-- Top bar-->
       <div class="top-bar">
@@ -51,7 +53,7 @@
                   <li class="list-inline-item"><a href="#"><i class="fa fa-phone"></i></a></li>
                   <li class="list-inline-item"><a href="#"><i class="fa fa-envelope"></i></a></li>
                 </ul>
-                <div class="login"><a href="#" data-toggle="modal" data-target="#login-modal" class="login-btn"><i class="fa fa-sign-in"></i><span class="d-none d-md-inline-block">Sign In</span></a><a href="customer-register.html" class="signup-btn"><i class="fa fa-user"></i><span class="d-none d-md-inline-block">Sign Up</span></a></div>
+                <div class="login"><a href="#" data-toggle="modal" data-target="#login-modal" class="login-btn"><i class="fa fa-sign-in"></i><span class="d-none d-md-inline-block">Sign In</span></a><a href="{{ url('auth/register') }}" class="signup-btn"><i class="fa fa-user"></i><span class="d-none d-md-inline-block">Sign Up</span></a></div>
                 <ul class="social-custom list-inline">
                   <li class="list-inline-item"><a href="#"><i class="fa fa-facebook"></i></a></li>
                   <li class="list-inline-item"><a href="#"><i class="fa fa-google-plus"></i></a></li>
@@ -98,97 +100,27 @@
             <button type="button" data-toggle="collapse" data-target="#navigation" class="navbar-toggler btn-template-outlined"><span class="sr-only">Toggle navigation</span><i class="fa fa-align-justify"></i></button>
             <div id="navigation" class="navbar-collapse collapse">
               <ul class="nav navbar-nav ml-auto">
-                <li class="nav-item  active"><a href="javascript: void(0)" >Home</a>
+                <li class="nav-item  active"><a href="{{url('/')}}" >Home</a>
                 </li>
-                <li class="nav-item dropdown menu-large"><a href="#" >Product</a>
+                <li class="nav-item dropdown menu-large"><a href="{{url('product')}}" >Product</a>
                 </li>
                 <!-- ========== FULL WIDTH MEGAMENU ==================-->
-                <li class="nav-item dropdown menu-large"><a href="#" data-hover="dropdown" data-delay="200" ">Supplier </a>
+                <li class="nav-item dropdown menu-large"><a href="{{url('penjual')}}" data-hover="dropdown" data-delay="200" ">Supplier </a>
                 </li>
                       <li class="nav-item dropdown menu-large"><a href="#" data-toggle="dropdown" data-hover="dropdown" data-delay="200" class="dropdown-toggle">Category <b class="caret"></b></a>
                   <ul class="dropdown-menu megamenu">
                     <li>
                       <div class="row">
+                        @foreach ($category as $cat)
                         <div class="col-md-6 col-lg-3">
-                          <h5>Home</h5>
+                          <h5>{{$cat->name}}</h5>
                           <ul class="list-unstyled mb-3">
-                            <li class="nav-item"><a href="index.html" class="nav-link">Option 1: Default Page</a></li>
-                            <li class="nav-item"><a href="index2.html" class="nav-link">Option 2: Application</a></li>
-                            <li class="nav-item"><a href="index3.html" class="nav-link">Option 3: Startup</a></li>
-                            <li class="nav-item"><a href="index4.html" class="nav-link">Option 4: Agency</a></li>
-                            <li class="nav-item"><a href="index5.html" class="nav-link">Option 5: Portfolio</a></li>
+                            @foreach ($cat ->children as $sub )
+                            <li class="nav-item"><a href="{{ url('/category/'.$sub->slug) }}" class="nav-link">{{$sub->name}}</a></li>
+                            @endforeach
                           </ul>
                       </div>
-                       <div class="col-md-6 col-lg-3">
-                          <h5>Home</h5>
-                          <ul class="list-unstyled mb-3">
-                            <li class="nav-item"><a href="index.html" class="nav-link">Option 1: Default Page</a></li>
-                            <li class="nav-item"><a href="index2.html" class="nav-link">Option 2: Application</a></li>
-                            <li class="nav-item"><a href="index3.html" class="nav-link">Option 3: Startup</a></li>
-                            <li class="nav-item"><a href="index4.html" class="nav-link">Option 4: Agency</a></li>
-                            <li class="nav-item"><a href="index5.html" class="nav-link">Option 5: Portfolio</a></li>
-                          </ul>
-                      </div>
-                       <div class="col-md-6 col-lg-3">
-                          <h5>Home</h5>
-                          <ul class="list-unstyled mb-3">
-                            <li class="nav-item"><a href="index.html" class="nav-link">Option 1: Default Page</a></li>
-                            <li class="nav-item"><a href="index2.html" class="nav-link">Option 2: Application</a></li>
-                            <li class="nav-item"><a href="index3.html" class="nav-link">Option 3: Startup</a></li>
-                            <li class="nav-item"><a href="index4.html" class="nav-link">Option 4: Agency</a></li>
-                            <li class="nav-item"><a href="index5.html" class="nav-link">Option 5: Portfolio</a></li>
-                          </ul>
-                      </div>
-                       <div class="col-md-6 col-lg-3">
-                          <h5>Home</h5>
-                          <ul class="list-unstyled mb-3">
-                            <li class="nav-item"><a href="index.html" class="nav-link">Option 1: Default Page</a></li>
-                            <li class="nav-item"><a href="index2.html" class="nav-link">Option 2: Application</a></li>
-                            <li class="nav-item"><a href="index3.html" class="nav-link">Option 3: Startup</a></li>
-                            <li class="nav-item"><a href="index4.html" class="nav-link">Option 4: Agency</a></li>
-                            <li class="nav-item"><a href="index5.html" class="nav-link">Option 5: Portfolio</a></li>
-                          </ul>
-                      </div>
-                       <div class="col-md-6 col-lg-3">
-                          <h5>Home</h5>
-                          <ul class="list-unstyled mb-3">
-                            <li class="nav-item"><a href="index.html" class="nav-link">Option 1: Default Page</a></li>
-                            <li class="nav-item"><a href="index2.html" class="nav-link">Option 2: Application</a></li>
-                            <li class="nav-item"><a href="index3.html" class="nav-link">Option 3: Startup</a></li>
-                            <li class="nav-item"><a href="index4.html" class="nav-link">Option 4: Agency</a></li>
-                            <li class="nav-item"><a href="index5.html" class="nav-link">Option 5: Portfolio</a></li>
-                          </ul>
-                      </div>
-                       <div class="col-md-6 col-lg-3">
-                          <h5>Home</h5>
-                          <ul class="list-unstyled mb-3">
-                            <li class="nav-item"><a href="index.html" class="nav-link">Option 1: Default Page</a></li>
-                            <li class="nav-item"><a href="index2.html" class="nav-link">Option 2: Application</a></li>
-                            <li class="nav-item"><a href="index3.html" class="nav-link">Option 3: Startup</a></li>
-                            <li class="nav-item"><a href="index4.html" class="nav-link">Option 4: Agency</a></li>
-                            <li class="nav-item"><a href="index5.html" class="nav-link">Option 5: Portfolio</a></li>
-                          </ul>
-                      </div>
-                       <div class="col-md-6 col-lg-3">
-                          <h5>Home</h5>
-                          <ul class="list-unstyled mb-3">
-                            <li class="nav-item"><a href="index.html" class="nav-link">Option 1: Default Page</a></li>
-                            <li class="nav-item"><a href="index2.html" class="nav-link">Option 2: Application</a></li>
-                            <li class="nav-item"><a href="index3.html" class="nav-link">Option 3: Startup</a></li>
-                            <li class="nav-item"><a href="index4.html" class="nav-link">Option 4: Agency</a></li>
-                            <li class="nav-item"><a href="index5.html" class="nav-link">Option 5: Portfolio</a></li>
-                          </ul>
-                      </div>
-                       <div class="col-md-6 col-lg-3">
-                          <h5>Home</h5>
-                          <ul class="list-unstyled mb-3">
-                            <li class="nav-item"><a href="index.html" class="nav-link">Option 1: Default Page</a></li>
-                            <li class="nav-item"><a href="index2.html" class="nav-link">Option 2: Application</a></li>
-                            <li class="nav-item"><a href="index3.html" class="nav-link">Option 3: Startup</a></li>
-                            <li class="nav-item"><a href="index4.html" class="nav-link">Option 4: Agency</a></li>
-                            <li class="nav-item"><a href="index5.html" class="nav-link">Option 5: Portfolio</a></li>
-                          </ul>
-                      </div>
+                      @endforeach
                     </li>
                   </ul>
                 </li>

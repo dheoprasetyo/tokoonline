@@ -55,7 +55,7 @@ class ProductController extends Controller
         $product->user_id = Auth::user()->id;
         $product->save();
         Alert::success('', 'Product Berhasil di Tambahkan');
-        return redirect('/product');
+        return redirect('admin/product');
     }
 
     /**

@@ -38,15 +38,15 @@ margin-left: -30px;
               @foreach($product as $row)
               <tr>
                 <td>{{ $no++ }}</td>
-                <td ><img src="{{$row->photo}}" width="40px" alt="User Image"></td>
+                <td ><img src="{{ url($row->photo) }}" width="40px" alt="User Image"></td>
                 <td>{{$row->name}}</td>
                 {{-- <td>{{$row->description}}</td> --}}
                 <td>{{$row->stock}}</td>
                 <td>Rp {{number_format($row->price,0,".",".")}}</td>
                 <td>{{$row->user->name}}</td>
                 <td>
-                    <form action="{{ route('admin.product.destroy', $row->id) }}" method="POST">
-                    <a href="{{url('product/'.$row->id.'/edit') }}" class="btn btn-primary  btn-xs">Edit</a>
+                    <form action="{{ route('product.destroy', $row->id) }}" method="POST">
+                    <a href="{{url('admin/product/'.$row->id.'/edit') }}" class="btn btn-primary  btn-xs">Edit</a>
                     
                       {{ csrf_field() }}
                       {{ method_field("DELETE")}}

@@ -17,7 +17,7 @@
             <div class="box-header with-border">
               <h3 class="box-title">Update Prodct</h3>
             </div>
-            <form role="form" action="{{ route('admin.product.update',$product->id) }}" method="POST" enctype="multipart/form-data">
+            <form role="form" action="{{ route('product.update',$product->id) }}" method="POST" enctype="multipart/form-data">
             {{ csrf_field() }}
             {{ method_field('PUT')}}
               <div class="box-body">

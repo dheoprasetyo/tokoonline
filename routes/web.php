@@ -20,8 +20,19 @@ Route::get('penjual','BerandaController@penjual');
 Route::get('auth/register','AuthController@register');
 Route::post('auth/register','AuthController@store')->name('home.register');
 Route::get('verfikasi/register/{token}','AuthController@verif');
+Route::post('auth/login','AuthController@login');
+Route::post('/cart', 'CartController@index');
+Route::get('keranjang','CartController@keranjang');
+Route::post('/cart/update/','CartController@update');
+Route::get('/cart/delete/{rowId}', 'CartController@delete');
+Route::get('/cart/formulir','CartController@formulir');
+Route::post('/cart/transaction','CartController@transaction');
+Route::get('/cart/myorder','CartController@myorder');
 
 Auth::routes();
+Route::get('citybyid/{id}',function($id){
+	return city($id);
+});
 
 
 

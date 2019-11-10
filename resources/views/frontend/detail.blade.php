@@ -35,7 +35,8 @@
                   </div>
                   <div class="col-sm-6">
                     <div class="box">
-                      <form>
+                      <form action="{{ url('cart') }}" method="POST">
+                          {{ @csrf_field() }}
                         
                         <p class="price">Rp {{number_format($product->price,0,".",".")}}</p>
                         {{-- <h3>Pengiriman</h3> --}}
@@ -43,26 +44,31 @@
                         <p class="text-center">Weight : {{ $product->weight }}</p>
                         <p class="text-center">Stock : {{ $product->stock }}</p>
                         <div class="sizes">
-                        <select class="bs-select">
+                        <select class="bs-select" name="qty">
                         @php
                             for($i=1; $i <= $product->stock; $i++){
-                                echo '<option value="small">'.$i.'</option>';
+                                echo '<option value="'.$i.'">'.$i.'</option>';
                             }
                         @endphp
                         </select>
                       </div>
+                      <input type="hidden" name="id" value="<?php echo $product->id;?>">
                       <br>
-                        <div class="sizes">
+                      <br>
+                        {{-- <div class="sizes">
                             <select class="bs-select">
                             <option value="small">JNE</option>
                             <option value="medium">TIKI</option>
                             {{-- <option value="large">Large</option>
-                            <option value="x-large">X Large</option> --}}
+                            <option value="x-large">X Large</option> 
                             </select>
-                        </div>
+                        </div> --}}
                         <p class="text-center">
+                          @if (Auth::user())
                           <button type="submit" class="btn btn-template-outlined"><i class="fa fa-shopping-cart"></i> Add to cart</button>
-                          <button type="submit" data-toggle="tooltip" data-placement="top" title="Add to wishlist" class="btn btn-default"><i class="fa fa-heart-o"></i></button>
+                          @else
+                          <small>Login dahulu untuk melakukan transaksi</small>
+                          @endif
                         </p>
                       </form>
                     </div>

@@ -33,6 +33,7 @@
     <link rel="apple-touch-icon" sizes="144x144" href="img/apple-touch-icon-144x144.png">
     <link rel="apple-touch-icon" sizes="152x152" href="img/apple-touch-icon-152x152.png">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+    @yield('header')
     <!-- Tweaks for older IEs--><!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
@@ -53,7 +54,11 @@
                   <li class="list-inline-item"><a href="#"><i class="fa fa-phone"></i></a></li>
                   <li class="list-inline-item"><a href="#"><i class="fa fa-envelope"></i></a></li>
                 </ul>
+                @if (Auth::user())
+
+                @else
                 <div class="login"><a href="#" data-toggle="modal" data-target="#login-modal" class="login-btn"><i class="fa fa-sign-in"></i><span class="d-none d-md-inline-block">Sign In</span></a><a href="{{ url('auth/register') }}" class="signup-btn"><i class="fa fa-user"></i><span class="d-none d-md-inline-block">Sign Up</span></a></div>
+                @endif
                 <ul class="social-custom list-inline">
                   <li class="list-inline-item"><a href="#"><i class="fa fa-facebook"></i></a></li>
                   <li class="list-inline-item"><a href="#"><i class="fa fa-google-plus"></i></a></li>
@@ -75,12 +80,13 @@
               <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
             </div>
             <div class="modal-body">
-              <form action="customer-orders.html" method="get">
+              <form action="{{ url('auth/login') }}" method="POST">
+                {{ @csrf_field() }}
                 <div class="form-group">
-                  <input id="email_modal" type="text" placeholder="email" class="form-control">
+                  <input id="email_modal" type="text" placeholder="email" name="email" class="form-control">
                 </div>
                 <div class="form-group">
-                  <input id="password_modal" type="password" placeholder="password" class="form-control">
+                  <input id="password_modal" type="password" name="password" placeholder="password" class="form-control">
                 </div>
                 <p class="text-center">
                   <button class="btn btn-template-outlined"><i class="fa fa-sign-in"></i> Log in</button>
@@ -126,13 +132,16 @@
                 </li>
                 <!-- ========== FULL WIDTH MEGAMENU END ==================-->
                 <!-- ========== Contact dropdown ==================-->
-                <li class="nav-item dropdown"><a href="javascript: void(0)" data-toggle="dropdown" class="dropdown-toggle">Contact <b class="caret"></b></a>
+                @if (Auth::user())
+                <li class="nav-item dropdown"><a  href="javascript: void(0)" data-toggle="dropdown" class="dropdown-toggle"><img class=" rounded-circle" width="15px" src="{{ url(Auth::user()->photos) }}"> {{(Auth::user()->name) }}  <b class="caret"></b></a>
                   <ul class="dropdown-menu">
-                    <li class="dropdown-item"><a href="contact.html" class="nav-link">Contact option 1</a></li>
-                    <li class="dropdown-item"><a href="contact2.html" class="nav-link">Contact option 2</a></li>
-                    <li class="dropdown-item"><a href="contact3.html" class="nav-link">Contact option 3</a></li>
+                    <li class="dropdown-item"><a href="contact.html" class="nav-link">My Profile</a></li>
+                    <li class="dropdown-item"><a href="{{url('cart/myorder')}}" class="nav-link">My Order</a></li>
+                    <li class="dropdown-item"><a href="{{ route('logout') }}" class="nav-link">Logout</a></li>
                   </ul>
                 </li>
+                 @else
+                @endif
                 <!-- ========== Contact dropdown end ==================-->
               </ul>
             </div>
@@ -249,5 +258,6 @@
     <script src="{{asset('frontend/vendor/bootstrap-select/js/bootstrap-select.min.js')}}"></script>
     <script src="{{asset('frontend/vendor/jquery.scrollto/jquery.scrollTo.min.js')}}"></script>
     <script src="{{asset('frontend/js/front.js')}}"></script>
+    @yield('script')
   </body>
 </html>

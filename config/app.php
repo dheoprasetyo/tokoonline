@@ -178,6 +178,7 @@ return [
         UniSharp\LaravelFilemanager\LaravelFilemanagerServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
+        Gloudemans\Shoppingcart\ShoppingcartServiceProvider::class
 
     ],
 
@@ -230,6 +231,7 @@ return [
         'Alert' => UxWeb\SweetAlert\SweetAlert::class,
         'Image' => Intervention\Image\Facades\Image::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
+        'Cart' => Gloudemans\Shoppingcart\Facades\Cart::class,
 
 
 

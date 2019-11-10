@@ -57,4 +57,24 @@ class AuthController extends Controller
         Alert::success('', 'Verifikasi Sukses,silahkan login');
         return redirect('auth/register');
     }
+
+    public function login(Request $request){
+        echo $email =  $request->email;
+        echo $pwd   =  $request->password;
+
+        if(Auth::attempt(['email' => $email,'password' => $pwd])){
+            $cek = User::where('id',Auth::user()->id)->first();
+            if($cek->status == 0){
+                Auth::logout();
+                Alert::success('', 'Maaf akun belum terverifikasi');
+                return redirect('/');
+            }else{
+                return redirect()->back();
+            }
+        }else{
+            Alert::success('', 'Maaf Email atau password tidak sesuai');
+                return redirect('/');
+        }
+       
+    }
 }
